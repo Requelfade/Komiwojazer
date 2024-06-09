@@ -3,6 +3,7 @@
 #include <string.h>
 
 #include "point.h"
+#include "ANK.h"
 
 int main() {
 	pathMatrix paths = GetPathsFromFile("dane.txt");
@@ -17,6 +18,26 @@ int main() {
 		}
 	}
 	printf_s("\n---------------------\nRozwiazania metoda 1:\n---------------------");
-	int s = Method1(paths);
-	printf_s("\nNajkrotsza sciezka metoda 1: %d", s);
+	int s1 = Method1(paths);
+	printf_s("\nNajkrotsza sciezka metoda 1: %d", s1);
+	printf_s("  ");
+
+	printf_s("\n---------------------\nRozwiazania metoda 2:\n---------------------\n");
+	
+	printf_s("\n");
+    arrayPath mst;
+    int totalWeight = kruskalMST(paths, &mst);
+
+    printf("Edges in the MST:\n");
+    for (int i = 0; i < mst.size; ++i) {
+        printf("%s - %s: %d\n", mst.array[i].point1.name, mst.array[i].point2.name, mst.array[i].weight);
+    }
+    printf("Total weight of MST: %d\n", totalWeight);
+
+    
+    return 0;
 }
+
+
+
+
