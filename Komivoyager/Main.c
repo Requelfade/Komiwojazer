@@ -25,7 +25,7 @@ int main() {
 	clock_t start = clock();
 	int s1 = Method1(paths);
 	clock_t end = clock();
-	double time_spent = (double)(end - start);
+	long double  time_spent = (long double)(end - start);
 	printf("Time taken in Method1: %f ms\n", time_spent);
 	printf_s("\nNajkrotsza sciezka metoda 1: %d", s1);
 	
@@ -37,7 +37,7 @@ int main() {
 	clock_t start2 = clock();
     int totalWeight = kruskalMST(paths, &mst);
 	clock_t end2 = clock(); 
-	double time_spent2 = (double)(end2 - start2);
+	long double  time_spent2 = (long double)(end2 - start2);
 
 
     printf("Edges in the MST:\n");

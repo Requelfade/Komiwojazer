@@ -129,40 +129,52 @@ int kruskalMST(pathMatrix matrix, arrayPath* resultMST) {
     return totalWeight;
 }
 
-void drukuj_porownanie(double time_1, double time_2, int  score_1, int score_2) {
+void drukuj_porownanie(long double time_1, long double  time_2, int score_1, int score_2) {
     printf_s("\n\n*******Porownanie Metod Najblizszego Sasiada i Algorytmu Najkrotszych Krawedzi*******\n\n");
 
-    char m2 = "ank";
-    char m1 = "mns";
-    char szybsza_metoda[50];
+    char szybsza_metoda[50]; 
     char dokladna_metoda[50];
-    double roznica_czasu;
+    long double  roznica_czasu;
     int roznica_wynik;
+    long double  procent_czasu;
+    long double  procent_wyniku;
 
-
-    if (time_1 > time_2) {
-        char szybsza_metoda = m2;
-        roznica_czasu = time_1 - time_2;
-    }
-    if (time_2 > time_1) {
-        char szybsza_metoda = m1;
+    // Wybór szybszej metody
+    if (time_1 < time_2) {
+        strcpy_s(szybsza_metoda, sizeof(szybsza_metoda), "Algorytm Najblizszego Sasiada");
         roznica_czasu = time_2 - time_1;
+        procent_czasu = (long double) roznica_czasu / time_2 * 100;
+    }
+    else {
+        strcpy_s(szybsza_metoda, sizeof(szybsza_metoda), "Algorytm Najkrotszych Krawedzi");
+        roznica_czasu = time_1 - time_2;
+        procent_czasu = (long double) roznica_czasu / time_1 * 100;
+    }
 
-    }
-    if (score_1 > score_2) {
-        char dokladna_metoda = m2;
-        roznica_wynik = score_1 - score_2;
-    }
-    if (score_2 > score_1) {
-        char dokladna_metoda = m1;
+    // Wybór dok³adniejszej metody
+    if (score_1 < score_2) {
+        strcpy_s(dokladna_metoda, sizeof(dokladna_metoda), "Algorytm Najblizszego Sasiada");
         roznica_wynik = score_2 - score_1;
+        procent_wyniku = (double) roznica_wynik / score_2 *100;
     }
+    else {
+        strcpy_s(dokladna_metoda, sizeof(dokladna_metoda), "Algorytm Najkrotszych Krawedzi");
+        roznica_wynik = score_1 - score_2;
+        procent_wyniku = (double) roznica_wynik / score_1 * 100;
+    }
+    
+    // Wnioski
+    printf_s("Szybsza metoda jest: %s\n", szybsza_metoda);
+    printf_s("Roznica w czasie wykonania wyniosla %lf milisekund\n", roznica_czasu);
+    printf_s("Czyli %lf procent dluzszego procesu\n", procent_czasu);
+    printf_s("dokladnosc pomiaru czasu jest ograniczona czestotliwoscia tickera fuckji *colck()*\n");
 
-    printf_s("Szybsza metoda jest: %s \n", szybsza_metoda);
-    printf_s("Roznica w czasie wykonania wyniosla %lf milisekund\n\n", roznica_czasu);
-    printf_s("Dokladniejsza metoda jest: %s \n", dokladna_metoda);
-    printf_s("Roznica w punktacji rozwiazania wyniosla %d jednostek", roznica_wynik);
+    printf_s("\nDokladniejsza metoda jest: %s\n", dokladna_metoda);
+    printf_s("Roznica w punktacji rozwiazania wyniosla %d jednostek\n", roznica_wynik);
+    printf_s("Czyli %lf procent nizszego wyniku\n", procent_wyniku);
 
+   
 
     return;
 }
+
