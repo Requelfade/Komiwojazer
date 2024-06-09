@@ -25,17 +25,17 @@ int main() {
 	printf_s("\n---------------------\nRozwiazania metoda 2:\n---------------------\n");
 	
 	printf_s("\n");
-    arrayPath mst;
-    int totalWeight = kruskalMST(paths, &mst);
+    	arrayPath mst;
+    	int totalWeight = kruskalMST(paths, &mst);
 
-    printf("Edges in the MST:\n");
-    for (int i = 0; i < mst.size; ++i) {
-        printf("%s - %s: %d\n", mst.array[i].point1.name, mst.array[i].point2.name, mst.array[i].weight);
-    }
-    printf("Total weight of MST: %d\n", totalWeight);
+   	 printf("Edges in the MST:\n");
+   	 for (int i = 0; i < mst.size; ++i) {
+		 printf("%s - %s: %d\n", mst.array[i].point1.name, mst.array[i].point2.name, mst.array[i].weight);
+ 	   }
+ 	  printf("Total weight of MST: %d\n", totalWeight);
 
     
-    return 0;
+ 	return 0;
 }
 
 
