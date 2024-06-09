@@ -1,6 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
+#include <time.h>
 
 #include "point.h"
 #include "ANK.h"
@@ -17,25 +18,39 @@ int main() {
 			printf_s("%3d ", paths.values[x + y * paths.headers.size]);
 		}
 	}
-	printf_s("\n---------------------\nRozwiazania metoda 1:\n---------------------");
+	printf_s("\n---------------------\nRozwiazania metoda 1:\n---------------------\n");
+	// Ten pomiar trzeba by zaimplementowaæ w Twojej funkcji - 
+	// problem w tym, ¿e nie zmie¿ymy czasu realizacji, bo funkcja traci czas na printy
+
+	clock_t start = clock();
 	int s1 = Method1(paths);
+	clock_t end = clock();
+	double time_spent = (double)(end - start);
+	printf("Time taken in Method1: %f ms\n", time_spent);
 	printf_s("\nNajkrotsza sciezka metoda 1: %d", s1);
-	printf_s("  ");
+	
 
 	printf_s("\n---------------------\nRozwiazania metoda 2:\n---------------------\n");
 	
 	printf_s("\n");
-    	arrayPath mst;
-    	int totalWeight = kruskalMST(paths, &mst);
+    arrayPath mst;
+	clock_t start2 = clock();
+    int totalWeight = kruskalMST(paths, &mst);
+	clock_t end2 = clock(); 
+	double time_spent2 = (double)(end2 - start2);
 
-   	 printf("Edges in the MST:\n");
-   	 for (int i = 0; i < mst.size; ++i) {
-		 printf("%s - %s: %d\n", mst.array[i].point1.name, mst.array[i].point2.name, mst.array[i].weight);
- 	   }
- 	  printf("Total weight of MST: %d\n", totalWeight);
 
-    
- 	return 0;
+    printf("Edges in the MST:\n");
+    for (int i = 0; i < mst.size; ++i) {
+        printf("%s - %s: %d\n", mst.array[i].point1.name, mst.array[i].point2.name, mst.array[i].weight);
+    }
+	printf("Time taken in Method2: %f ms\n", time_spent2);
+    printf("Total weight of MST: %d\n", totalWeight);
+
+	drukuj_porownanie(time_spent, time_spent2, s1, totalWeight);
+	//Nie wiem jaki ma problem z drukowaniem nazw algorytmów, jak siê przewietrzê, to wrócê do tematu :D
+	// # C_Ssie
+    return 0;
 }
 
 

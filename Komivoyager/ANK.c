@@ -129,35 +129,40 @@ int kruskalMST(pathMatrix matrix, arrayPath* resultMST) {
     return totalWeight;
 }
 
-//int main() {
-//    // Przyk³adowe dane wejœciowe
-//    point pointsArray[] = {
-//        {"A", 0}, {"B", 1}, {"C", 2}, {"D", 3}, {"E", 4}
-//    };
-//    arrayPoint points;
-//    points.array = pointsArray;
-//    points.size = 5;
-//
-//    int values[] = {
-//        0, 10, 6, 5, 0,
-//        10, 0, 0, 15, 0,
-//        6, 0, 0, 4, 0,
-//        5, 15, 4, 0, 0,
-//        0, 0, 0, 0, 0
-//    };
-//    pathMatrix matrix;
-//    matrix.headers = points;
-//    matrix.values = values;
-//
-//    arrayPath mst;
-//    int totalWeight = kruskalMST(matrix, &mst);
-//
-//    printf("Edges in the MST:\n");
-//    for (int i = 0; i < mst.size; ++i) {
-//        printf("%s - %s: %d\n", mst.array[i].point1.name, mst.array[i].point2.name, mst.array[i].weight);
-//    }
-//    printf("Total weight of MST: %d\n", totalWeight);
-//
-//    free(mst.array);
-//    return 0;
-//}
+void drukuj_porownanie(double time_1, double time_2, int  score_1, int score_2) {
+    printf_s("\n\n*******Porownanie Metod Najblizszego Sasiada i Algorytmu Najkrotszych Krawedzi*******\n\n");
+
+    char m2 = "ank";
+    char m1 = "mns";
+    char szybsza_metoda[50];
+    char dokladna_metoda[50];
+    double roznica_czasu;
+    int roznica_wynik;
+
+
+    if (time_1 > time_2) {
+        char szybsza_metoda = m2;
+        roznica_czasu = time_1 - time_2;
+    }
+    if (time_2 > time_1) {
+        char szybsza_metoda = m1;
+        roznica_czasu = time_2 - time_1;
+
+    }
+    if (score_1 > score_2) {
+        char dokladna_metoda = m2;
+        roznica_wynik = score_1 - score_2;
+    }
+    if (score_2 > score_1) {
+        char dokladna_metoda = m1;
+        roznica_wynik = score_2 - score_1;
+    }
+
+    printf_s("Szybsza metoda jest: %s \n", szybsza_metoda);
+    printf_s("Roznica w czasie wykonania wyniosla %lf milisekund\n\n", roznica_czasu);
+    printf_s("Dokladniejsza metoda jest: %s \n", dokladna_metoda);
+    printf_s("Roznica w punktacji rozwiazania wyniosla %d jednostek", roznica_wynik);
+
+
+    return;
+}
