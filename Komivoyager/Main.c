@@ -19,8 +19,8 @@ int main() {
 		}
 	}
 	printf_s("\n---------------------\nRozwiazania metoda 1:\n---------------------\n");
-	// Ten pomiar trzeba by zaimplementowaæ w Twojej funkcji - 
-	// problem w tym, ¿e nie zmie¿ymy czasu realizacji, bo funkcja traci czas na printy
+	// Ten pomiar trzeba by zaimplementowaÃ¦ w Twojej funkcji - 
+	// problem w tym, Â¿e nie zmieÂ¿ymy czasu realizacji, bo funkcja traci czas na printy
 
 	clock_t start = clock();
 	int s1 = Method1(paths);
@@ -48,8 +48,7 @@ int main() {
     printf("Total weight of MST: %d\n", totalWeight);
 
 	drukuj_porownanie(time_spent, time_spent2, s1, totalWeight);
-	//Nie wiem jaki ma problem z drukowaniem nazw algorytmów, jak siê przewietrzê, to wrócê do tematu :D
-	// # C_Ssie
+
     return 0;
 }
 
